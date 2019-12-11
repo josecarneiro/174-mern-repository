@@ -6,7 +6,8 @@
     "start": "node ./server",
     "dev": "nodemon ./server",
     "dev:debug": "DEBUG=react-rest-api* npm run dev",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepare": "cd ./client && npm install && npm run build"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

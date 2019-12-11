@@ -32,7 +32,7 @@ app.use(
     sourceMap: true
   })
 );
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(join(__dirname, 'client/build')));
 app.use(logger('dev'));
 
 // app.use(express.urlencoded({ extended: true }));
@@ -56,9 +56,13 @@ app.use(
   })
 );
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/api', apiRouter);
 app.use('/api/authentication', apiAuthenticationRouter);
+
+app.get('*', (req, res, next) => {
+  res.sendFile(join(__dirname, 'client/build/index.html'));
+});
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
